@@ -2,11 +2,18 @@ import XCTest
 @testable import Octal
 
 final class OctalTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    func testOctalEnDecode() throws {
+        let clearstring = "Helloafiaifaibfiabfibaifbiabfiøでの日本語文字コードを扱うために使用されている従来の"
+        let string = clearstring.data(using: .utf8)!.octalString
+        guard let decodedData = string.octalDecodedData else {
+            return
+        }
+        guard let res = String(data: decodedData, encoding: .utf8) else {
+            return
+        }
+        let string1 = clearstring.octalString()
+        let res1 = string1?.octalDecodedString()
+        
+        XCTAssertTrue(res == clearstring && res1 == clearstring)
     }
 }
