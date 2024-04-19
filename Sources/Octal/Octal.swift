@@ -1,5 +1,5 @@
 import Foundation
-extension Data{
+public extension Data{
     var octalString: String {
         return self.map {byte in
             String(format: "%o", byte)
@@ -7,7 +7,7 @@ extension Data{
     }
 }
 
-extension String{
+public extension String{
     var octalDecodedData: Data?{
         if self.count % 3 != 0{
             return nil
@@ -31,14 +31,14 @@ extension String{
         return Data(bytes)
     }
     
-    func octalString(encoding: Encoding = .utf8)-> String?{
+    public func octalString(encoding: Encoding = .utf8)-> String?{
         guard let data = self.data(using: encoding) else {
             return nil
         }
         return data.octalString
     }
     
-    func octalDecodedString(encoding: Encoding = .utf8)-> String? {
+    public func octalDecodedString(encoding: Encoding = .utf8)-> String? {
         guard let data = self.octalDecodedData else {
             return nil
         }
