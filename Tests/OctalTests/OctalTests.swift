@@ -4,8 +4,9 @@ import XCTest
 final class OctalTests: XCTestCase {
     func testOctalEnDecode() throws {
         //let clearstring = "Helloafiaifaibfiabfibaifbiabfiøでの日本語文字コードを扱うために使用されている従来の"
-        let clearstring = "Test-aidu"
+        let clearstring = "-"
         let string = clearstring.data(using: .utf8)!.octalString
+        print(string)
         guard let decodedData = string.octalDecodedData else {
             return
         }

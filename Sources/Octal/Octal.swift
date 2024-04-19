@@ -2,7 +2,7 @@ import Foundation
 public extension Data{
     var octalString: String {
         return self.map {byte in
-            String(format: "%o", byte).padding(toLength: 3, withPad: "0", startingAt: 0)
+            String(format: "%03o", byte)
         }.joined()
     }
 }
@@ -31,14 +31,14 @@ public extension String{
         return Data(bytes)
     }
     
-    public func octalString(encoding: Encoding = .utf8)-> String?{
+    func octalString(encoding: Encoding = .utf8)-> String?{
         guard let data = self.data(using: encoding) else {
             return nil
         }
         return data.octalString
     }
     
-    public func octalDecodedString(encoding: Encoding = .utf8)-> String? {
+    func octalDecodedString(encoding: Encoding = .utf8)-> String? {
         guard let data = self.octalDecodedData else {
             return nil
         }
