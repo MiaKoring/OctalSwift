@@ -2,7 +2,7 @@ import Foundation
 public extension Data{
     var octalString: String {
         return self.map {byte in
-            String(format: "%o", byte)
+            String(format: "%o", byte).padding(toLength: 3, withPad: "0", startingAt: 0)
         }.joined()
     }
 }
